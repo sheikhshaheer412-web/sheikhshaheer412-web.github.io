@@ -1,34 +1,61 @@
-// Mobile Navigation Toggle
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+<!DOCTYPE html>
+<html>
+<head>
+    <title>[Your Name/Studio Name] | UI/UX & Graphic Design</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+    <header>
+        <h1>[YOUR NAME] - Design Services</h1>
+        <p>Providing Stunning UI/UX Design and High-Quality Graphic Design Work.</p>
+        <hr>
+    </header>
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
-}));
+    <main>
+        <section>
+            <h2>UI/UX Design Services</h2>
+            <p>I focus on creating seamless user experiences and visually appealing interfaces that drive engagement and meet business goals.</p>
+            <ul>
+                <li>User Research & Analysis</li>
+                <li>Wireframing & Prototyping (Figma, Adobe XD)</li>
+                <li>Information Architecture</li>
+                <li>Accessibility Standards Compliance</li>
+            </ul>
+        </section>
+        
+        <hr>
 
-// Smooth Scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
+        <section>
+            <h2>Graphic Design Work</h2>
+            <p>From brand identity to marketing materials, I deliver impactful visuals that tell your story.</p>
+            <ul>
+                <li>Logo & Brand Identity Design</li>
+                <li>Marketing Materials (Brochures, Flyers, Posters)</li>
+                <li>Social Media Graphics & Templates</li>
+                <li>Custom Illustrations</li>
+            </ul>
+        </section>
 
-// Contact Form Handler (Basic - logs to console; replace with real submission)
-const contactForm = document.getElementById('contact-form');
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = new FormData(contactForm);
-    console.log('Form submitted:', Object.fromEntries(formData)); // For demo; integrate with API
-    alert('Message sent! (Demo - check console)');
-    contactForm.reset();
-});
+        <hr>
+        
+        <section>
+            <h2>My Work/Portfolio</h2>
+            <p>See examples of my recent projects on:</p>
+            <a href="#">Behance Profile</a> | <a href="#">Dribbble Profile</a>
+        </section>
+    </main>
+    
+    <hr>
+
+    <footer>
+        <h2>Get in Touch</h2>
+        <p>Ready to start a project? Contact me below:</p>
+        <p><strong>Email:</strong> [Your Email Address]</p>
+        <p><strong>LinkedIn:</strong> <a href="#">[Your LinkedIn Profile Link]</a></p>
+        <p><strong>Dribbble:</strong> <a href="#">[Your Dribbble Link]</a></p>
+    </footer>
+
+</body>
+</html>
