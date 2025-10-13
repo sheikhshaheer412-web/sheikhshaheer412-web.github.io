@@ -1,61 +1,334 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>[Your Name/Studio Name] | UI/UX & Graphic Design</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - UI/UX & Graphic Designer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #2d3748;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: #f7fafc;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.03);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-content h3 {
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-content p {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+
+        .about {
+            background: #f7fafc;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5568;
+        }
+
+        .contact {
+            background: #2d3748;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .contact p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            background: #667eea;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .contact-links a:hover {
+            background: #764ba2;
+        }
+
+        footer {
+            background: #1a202c;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
     <header>
-        <h1>[YOUR NAME] - Design Services</h1>
-        <p>Providing Stunning UI/UX Design and High-Quality Graphic Design Work.</p>
-        <hr>
+        <h1>Your Name</h1>
+        <p>UI/UX Designer & Graphic Designer</p>
     </header>
 
-    <main>
-        <section>
-            <h2>UI/UX Design Services</h2>
-            <p>I focus on creating seamless user experiences and visually appealing interfaces that drive engagement and meet business goals.</p>
-            <ul>
-                <li>User Research & Analysis</li>
-                <li>Wireframing & Prototyping (Figma, Adobe XD)</li>
-                <li>Information Architecture</li>
-                <li>Accessibility Standards Compliance</li>
-            </ul>
-        </section>
-        
-        <hr>
+    <nav>
+        <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-        <section>
-            <h2>Graphic Design Work</h2>
-            <p>From brand identity to marketing materials, I deliver impactful visuals that tell your story.</p>
-            <ul>
-                <li>Logo & Brand Identity Design</li>
-                <li>Marketing Materials (Brochures, Flyers, Posters)</li>
-                <li>Social Media Graphics & Templates</li>
-                <li>Custom Illustrations</li>
-            </ul>
-        </section>
+    <div class="container" id="services">
+        <h2 class="section-title">What I Do</h2>
+        <div class="services">
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Mobile App Design</h3>
+                <p>Beautiful and intuitive iOS and Android app interfaces that users love.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3>Website Design</h3>
+                <p>Responsive and modern website designs that work perfectly on all devices.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <h3>Web App Design</h3>
+                <p>Complex web applications with seamless user experiences and clean interfaces.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Dashboard Design</h3>
+                <p>Data visualization and admin dashboards that make complex information simple.</p>
+            </div>
+        </div>
+    </div>
 
-        <hr>
-        
-        <section>
-            <h2>My Work/Portfolio</h2>
-            <p>See examples of my recent projects on:</p>
-            <a href="#">Behance Profile</a> | <a href="#">Dribbble Profile</a>
-        </section>
-    </main>
-    
-    <hr>
+    <div class="container" id="portfolio">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-image">📱</div>
+                <div class="portfolio-content">
+                    <h3>E-Commerce Mobile App</h3>
+                    <p>Complete mobile shopping experience with modern UI and smooth animations.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-image">🌐</div>
+                <div class="portfolio-content">
+                    <h3>Corporate Website</h3>
+                    <p>Professional business website with responsive design and engaging interactions.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-image">💻</div>
+                <div class="portfolio-content">
+                    <h3>SaaS Web Application</h3>
+                    <p>Full-featured web app with intuitive navigation and powerful features.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-image">📊</div>
+                <div class="portfolio-content">
+                    <h3>Analytics Dashboard</h3>
+                    <p>Real-time data dashboard with beautiful charts and comprehensive insights.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-image">📱</div>
+                <div class="portfolio-content">
+                    <h3>Fitness Tracking App</h3>
+                    <p>Health and fitness mobile app with workout tracking and goal setting.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-image">🌐</div>
+                <div class="portfolio-content">
+                    <h3>Restaurant Website</h3>
+                    <p>Appetizing restaurant site with online ordering and reservation system.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p>I'm a passionate UI/UX and graphic designer specializing in creating beautiful, user-friendly digital experiences. With expertise in mobile apps, websites, web applications, and dashboards, I transform ideas into engaging designs that users love. I believe great design is not just about aesthetics—it's about solving problems and creating meaningful connections between people and technology.</p>
+        </div>
+    </div>
+
+    <div class="contact" id="contact">
+        <h2>Let's Work Together</h2>
+        <p>Have a project in mind? Let's create something amazing!</p>
+        <div class="contact-links">
+            <a href="mailto:your.email@example.com">Email Me</a>
+            <a href="#">View Resume</a>
+            <a href="#">LinkedIn</a>
+        </div>
+    </div>
 
     <footer>
-        <h2>Get in Touch</h2>
-        <p>Ready to start a project? Contact me below:</p>
-        <p><strong>Email:</strong> [Your Email Address]</p>
-        <p><strong>LinkedIn:</strong> <a href="#">[Your LinkedIn Profile Link]</a></p>
-        <p><strong>Dribbble:</strong> <a href="#">[Your Dribbble Link]</a></p>
+        <p>&copy; 2025 Your Name. All rights reserved.</p>
     </footer>
-
 </body>
 </html>
