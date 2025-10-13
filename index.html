@@ -1,47 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shaheer Designx | UI/UX Designer</title>
   <style>
     *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
     body{
-      background:#050510;
-      color:#e8ecf3;
+      background:linear-gradient(135deg,#e3f2ff,#ffffff,#f7e9ff);
+      color:#1e293b;
       overflow-x:hidden;
     }
     header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
+      display:flex;justify-content:space-between;align-items:center;
       padding:20px 8%;
-      background:rgba(255,255,255,0.02);
-      backdrop-filter:blur(8px);
-      border-bottom:1px solid rgba(255,255,255,0.05);
-      position:sticky;top:0;
+      background:rgba(255,255,255,0.6);
+      backdrop-filter:blur(10px);
+      position:sticky;top:0;z-index:10;
+      border-bottom:1px solid rgba(0,0,0,0.1);
     }
     .logo{
-      font-size:1.5rem;
-      font-weight:700;
+      font-size:1.6rem;font-weight:700;
       background:linear-gradient(90deg,#7c3aed,#06b6d4);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
     }
     nav a{
-      color:#b0b9c7;
-      text-decoration:none;
-      margin-left:25px;
+      color:#334155;text-decoration:none;margin-left:25px;font-weight:500;
       transition:.3s;
     }
-    nav a:hover{color:#06b6d4;}
+    nav a:hover{color:#7c3aed;}
     section{padding:100px 8%;}
     .hero{
-      display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-      justify-content:center;
-      height:80vh;
+      display:flex;flex-direction:column;align-items:flex-start;
+      justify-content:center;min-height:80vh;
     }
     .hero h1{
       font-size:3rem;
@@ -49,66 +41,60 @@
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
     }
-    .hero p{max-width:550px;margin:20px 0;color:#a1acbe;line-height:1.6;}
+    .hero p{
+      max-width:600px;margin:20px 0;color:#475569;line-height:1.7;
+    }
     .btn{
       padding:12px 28px;
       background:linear-gradient(90deg,#7c3aed,#06b6d4);
-      border:none;
-      border-radius:8px;
-      color:white;
-      font-weight:600;
-      text-decoration:none;
-      transition:.3s;
+      border:none;border-radius:8px;color:white;
+      font-weight:600;text-decoration:none;transition:.3s;
+      box-shadow:0 4px 14px rgba(124,58,237,0.3);
     }
-    .btn:hover{opacity:.85;}
-    .about h2, .skills h2, .portfolio h2, .contact h2{
+    .btn:hover{transform:translateY(-3px);}
+    .about, .skills, .portfolio, .contact{
+      background:rgba(255,255,255,0.4);
+      border-radius:16px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.08);
+      margin-bottom:60px;
+      padding:60px;
+    }
+    h2{
       font-size:2rem;
-      margin-bottom:30px;
+      margin-bottom:20px;
       background:linear-gradient(90deg,#7c3aed,#06b6d4);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
     }
-    .about p{
-      max-width:700px;
-      color:#a1acbe;
-      line-height:1.8;
-    }
-    .skills-list{
-      display:flex;
-      flex-wrap:wrap;
-      gap:15px;
-    }
+    .about p{max-width:700px;color:#475569;line-height:1.8;}
+    .skills-list{display:flex;flex-wrap:wrap;gap:15px;}
     .skill{
-      background:rgba(255,255,255,0.03);
-      border:1px solid rgba(255,255,255,0.05);
+      background:rgba(255,255,255,0.8);
+      border:1px solid rgba(0,0,0,0.1);
       border-radius:8px;
-      padding:15px 20px;
+      padding:12px 18px;
       font-weight:500;
       transition:.3s;
+      color:#334155;
     }
     .skill:hover{
       background:linear-gradient(90deg,#7c3aed20,#06b6d420);
+      transform:translateY(-3px);
     }
     .portfolio-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
       gap:20px;
     }
     .card{
-      background:rgba(255,255,255,0.02);
-      border:1px solid rgba(255,255,255,0.05);
-      border-radius:10px;
-      padding:20px;
-      text-align:center;
+      background:white;
+      border-radius:12px;
+      box-shadow:0 4px 18px rgba(0,0,0,0.08);
+      padding:25px;
       transition:.3s;
     }
-    .card:hover{transform:translateY(-5px);background:rgba(255,255,255,0.04);}
-    .contact a{
-      color:#06b6d4;
-      text-decoration:none;
-      font-weight:600;
-    }
-    footer{text-align:center;padding:30px;color:#7a8594;font-size:.9rem;}
+    .card:hover{transform:translateY(-5px);}
+    footer{text-align:center;padding:30px;color:#475569;font-size:.9rem;}
   </style>
 </head>
 <body>
@@ -123,48 +109,48 @@
   </header>
 
   <section class="hero">
-    <h1>Designing the Future — One Pixel at a Time</h1>
-    <p>I'm Shaheer, a passionate UI/UX designer from Lahore. I create modern, practical and human-centered designs that help businesses grow and users connect. Tradition meets innovation — that’s my design code.</p>
-    <a href="#portfolio" class="btn">See My Work</a>
+    <h1>Designing with Vision and Precision</h1>
+    <p>I’m Shaheer, a passionate UI/UX designer focused on creating clear, beautiful, and effective digital experiences. I believe in simplicity, structure, and design that speaks for itself — functional, elegant, and timeless.</p>
+    <a href="#portfolio" class="btn">View My Work</a>
   </section>
 
   <section id="about" class="about">
     <h2>About Me</h2>
-    <p>I’m a self-taught designer who believes in doing things right — no shortcuts. From Daraz affiliates to full-blown interface systems, I’ve learned by building. I focus on clean layouts, readable typography, and meaningful user experiences that convert visitors into customers.</p>
+    <p>I’m a self-taught designer who learned through real-world work and consistency. My approach is traditional discipline mixed with modern execution — layouts that breathe, typography that speaks, and interfaces that make sense. I don’t chase trends; I design with logic and purpose.</p>
   </section>
 
   <section id="skills" class="skills">
     <h2>Skills & Tools</h2>
     <div class="skills-list">
       <div class="skill">UI/UX Design</div>
-      <div class="skill">Prototyping</div>
-      <div class="skill">Wireframing</div>
+      <div class="skill">Web Design</div>
       <div class="skill">Figma</div>
       <div class="skill">Photoshop</div>
       <div class="skill">Illustrator</div>
-      <div class="skill">WordPress (Basic)</div>
       <div class="skill">Responsive Design</div>
+      <div class="skill">Wireframing</div>
+      <div class="skill">Prototyping</div>
     </div>
   </section>
 
   <section id="portfolio" class="portfolio">
-    <h2>Selected Projects</h2>
+    <h2>Portfolio Highlights</h2>
     <div class="portfolio-grid">
-      <div class="card">Food Ordering Website UI</div>
-      <div class="card">Property Listing Platform</div>
-      <div class="card">Affiliate Product Posters</div>
-      <div class="card">E-commerce Landing Page</div>
+      <div class="card">Modern Landing Page Design</div>
+      <div class="card">Property Website Interface</div>
+      <div class="card">Mobile App Dashboard</div>
+      <div class="card">Branding Concept UI Kit</div>
     </div>
   </section>
 
   <section id="contact" class="contact">
-    <h2>Let’s Work Together</h2>
-    <p>Got a project, collaboration, or opportunity? Let’s connect.</p>
-    <p>Email me at <a href="mailto:shaheerdesignx@gmail.com">shaheerdesignx@gmail.com</a></p>
+    <h2>Let’s Collaborate</h2>
+    <p>Interested in working together or need a creative partner for your next project?</p>
+    <p>Reach out at <strong>shaheerdesignx@gmail.com</strong></p>
   </section>
 
   <footer>
-    © 2025 Shaheer Designx — Built with passion and precision.
+    © 2025 Shaheer Designx — Vision. Structure. Impact.
   </footer>
 </body>
 </html>
