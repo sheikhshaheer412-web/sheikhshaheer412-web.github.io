@@ -1,133 +1,431 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shaheer Designx</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shaheer Designx — UI/UX Designer</title>
+  <meta name="description" content="Shaheer Designx — Practical UI/UX, clean systems and meaningful interfaces.">
   <style>
-    * { margin:0; padding:0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-    body { color: #f0f0f0; background: #111; overflow-x: hidden; }
-    .hero {
-      position: relative;
-      height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
+    /* -------------------------
+       Base / layout
+       ------------------------*/
+    :root{
+      --bg1: #f8fafc;
+      --bg2: #f3f6ff;
+      --text: #0f1724;
+      --muted: #5b6470;
+      --accentA: #7c3aed;
+      --accentB: #06b6d4;
+      --card: #ffffff;
+      --glass: rgba(255,255,255,0.7);
     }
-    .hero video, .hero img {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transform: translate(-50%, -50%);
-      mix-blend-mode: luminosity;
-      opacity: 0.8;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--text);
+      background: linear-gradient(180deg,var(--bg1) 0%, var(--bg2) 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+      line-height:1.45;
     }
-    .hero .overlay {
-      position: absolute;
-      top:0; left:0; right:0; bottom:0;
-      background: rgba(0,0,0,0.4);
+    a{color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:28px 20px;}
+
+    /* -------------------------
+       Header
+       ------------------------*/
+    header{
+      position:sticky;top:0;z-index:60;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.6));
+      border-bottom: 1px solid rgba(16,24,40,0.04);
     }
-    .hero .content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      padding: 0 20px;
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 20px;}
+    .brand{display:flex;align-items:center;gap:12px}
+    .badge{
+      width:46px;height:46px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;font-size:15px;color:white;
+      background:linear-gradient(90deg,var(--accentA),var(--accentB));
+      box-shadow:0 8px 30px rgba(124,58,237,0.12);
     }
-    .hero h1 {
-      font-size: 3rem;
-      background: linear-gradient(90deg, #7c3aed, #06b6d4);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .brand h1{font-size:16px;margin:0}
+    nav a{margin-left:18px;font-weight:600;color:var(--muted);text-decoration:none}
+    nav a.cta{
+      background:linear-gradient(90deg,var(--accentA),var(--accentB));
+      color:white;padding:8px 12px;border-radius:10px;
+      box-shadow:0 8px 18px rgba(6,182,212,0.08);
     }
-    .hero p {
-      margin-top: 20px;
-      font-size: 1.2rem;
-      color: #ddd;
-      line-height: 1.5;
+
+    /* -------------------------
+       Animated background blobs + particle canvas
+       ------------------------*/
+    .bg-blobs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+    .blob{
+      position:absolute;border-radius:50%;
+      filter: blur(36px);
+      opacity:0.65;
+      transform: translate3d(0,0,0);
+      mix-blend-mode: multiply;
+      animation: float 10s ease-in-out infinite;
     }
-    section {
-      padding: 80px 8%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 40px;
+    .blob.b1{width:520px;height:520px;left:-10%;top:-8%;background:linear-gradient(145deg,#fbe7ff,#e1f7ff);animation-duration:16s}
+    .blob.b2{width:420px;height:420px;right:-6%;top:10%;background:linear-gradient(145deg,#e8f0ff,#fff0f8);animation-duration:14s}
+    .blob.b3{width:360px;height:360px;left:15%;bottom:-10%;background:linear-gradient(145deg,#e6f9ff,#f7e9ff);animation-duration:18s}
+    @keyframes float{
+      0%{transform:translateY(0) scale(1)}
+      50%{transform:translateY(-28px) scale(1.02)}
+      100%{transform:translateY(0) scale(1)}
     }
-    section:nth-child(even) {
-      flex-direction: row-reverse;
+    /* particle canvas occupies full screen behind content */
+    #particleCanvas{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.65}
+
+    /* -------------------------
+       Hero
+       ------------------------*/
+    .hero{position:relative;z-index:10;padding:90px 0 40px}
+    .hero-inner{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center}
+    .hero h2{
+      font-size:36px;margin:0 0 12px;
+      background: linear-gradient(90deg,var(--accentA),var(--accentB));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
     }
-    section img {
-      width: 50%;
-      border-radius: 12px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    .hero p{color:var(--muted);max-width:700px;margin-bottom:18px;font-size:16px}
+    .hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-block;padding:12px 18px;border-radius:10px;font-weight:700;text-decoration:none;
+      box-shadow:0 6px 20px rgba(12,18,30,0.06);
     }
-    section .text {
-      width: 50%;
+    .btn.primary{background:linear-gradient(90deg,var(--accentA),var(--accentB));color:white}
+    .btn.ghost{border:1px solid rgba(16,24,40,0.06);background:transparent;color:var(--text)}
+
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.9));
+      border-radius:14px;padding:22px;box-shadow:0 12px 40px rgba(16,24,40,0.06);
+      border:1px solid rgba(16,24,40,0.03);
     }
-    section .text h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, #7c3aed, #06b6d4);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .hero-card h3{margin:0;font-size:18px}
+    .hero-avatar{
+      width:100%;height:210px;border-radius:10px;overflow:hidden;margin-top:12px;
+      background:linear-gradient(180deg,#eef6ff,#fff6fb);
+      display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:600;
     }
-    section .text p {
-      color: #ccc;
-      line-height: 1.7;
+
+    /* -------------------------
+       Sections
+       ------------------------*/
+    section.site-section{margin:36px 0;padding:44px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.7));box-shadow:0 10px 36px rgba(12,18,30,0.04);border:1px solid rgba(16,24,40,0.03)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .card{background:var(--card);border-radius:12px;padding:18px;border:1px solid rgba(16,24,40,0.03)}
+    .muted{color:var(--muted)}
+    h3.section-title{font-size:22px;margin:0 0 8px}
+
+    /* skills */
+    .skills-list{display:flex;flex-wrap:wrap;gap:12px}
+    .pill{background:linear-gradient(90deg,#fff,#fff);border-radius:999px;padding:8px 14px;border:1px solid rgba(16,24,40,0.04);font-weight:600;color:var(--text)}
+
+    /* portfolio cards */
+    .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+    .shot{height:160px;border-radius:10px;background-size:cover;background-position:center;box-shadow:0 10px 30px rgba(12,18,30,0.06);border:1px solid rgba(16,24,40,0.03);overflow:hidden}
+    .shot-meta{padding:12px}
+
+    /* contact */
+    .contact-row{display:flex;gap:18px;align-items:flex-start}
+    .contact-left{flex:1}
+    .contact-right{width:320px}
+
+    /* footer */
+    footer{padding:28px 0;text-align:center;color:var(--muted);font-size:14px}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero-inner{grid-template-columns:1fr;gap:18px}
+      .grid-3{grid-template-columns:repeat(2,1fr)}
+      .grid-2{grid-template-columns:1fr}
+      .contact-row{flex-direction:column}
+      .contact-right{width:100%}
     }
-    footer {
-      text-align: center;
-      padding: 40px;
-      color: #888;
-      font-size: 0.9rem;
-      background: #111;
-    }
-    @media (max-width: 900px) {
-      section {
-        flex-direction: column;
-      }
-      section img, section .text {
-        width: 100%;
-      }
+    @media (max-width:560px){
+      .grid-3{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-
-  <div class="hero">
-    <!-- Optional: use a video background -->
-    <!-- <video autoplay muted loop>
-      <source src="your-video.mp4" type="video/mp4">
-    </video> -->
-    <img src="https://source.unsplash.com/1600x900/?abstract,design" alt="Background">
-    <div class="overlay"></div>
-    <div class="content">
-      <h1>Shaheer Designx</h1>
-      <p>Designer. Storyteller. Builder of digital experiences that command attention.</p>
-    </div>
+  <!-- animated backgrounds -->
+  <div class="bg-blobs" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
   </div>
+  <canvas id="particleCanvas"></canvas>
 
-  <section>
-    <img src="https://source.unsplash.com/800x600/?ux,ui" alt="">
-    <div class="text">
-      <h2>Clean & Purposeful Design</h2>
-      <p>I build interfaces that are minimal yet meaningful. Every pixel serves purpose. Every interaction leads to clarity.</p>
+  <!-- header -->
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="badge">SDx</div>
+        <div>
+          <h1 style="font-size:15px;margin:0">Shaheer Designx</h1>
+          <div style="font-size:12px;color:var(--muted)">UI / UX Designer — Lahore</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#portfolio">Work</a>
+        <a class="cta" href="#contact">Hire / Contact</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <section>
-    <img src="https://source.unsplash.com/800x600/?code,creative" alt="">
-    <div class="text">
-      <h2>Innovative & Functional</h2>
-      <p>Combining creativity with utility — design that looks good *and* works. No fluff, no unnecessary elements.</p>
-    </div>
-  </section>
+  <main class="wrap" role="main">
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div>
+          <h2>Designing with vision, discipline & precision</h2>
+          <p>I craft clear, practical interfaces and design systems that scale. No gimmicks — just clean layouts, readable typography, and experiences that convert. Traditional discipline, modern output.</p>
+          <div class="actions">
+            <a class="btn primary" href="#portfolio">See Work</a>
+            <a class="btn ghost" href="#contact">Let's Talk</a>
+          </div>
 
-  <footer>
-    © 2025 Shaheer Designx. All rights reserved.
-  </footer>
+          <div style="margin-top:28px" aria-hidden="true">
+            <strong style="font-size:13px;color:var(--muted)">Quick facts</strong>
+            <div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap">
+              <div style="background:linear-gradient(90deg,#fff,#fff);padding:8px 12px;border-radius:10px;border:1px solid rgba(16,24,40,0.03)">Self-taught</div>
+              <div style="background:linear-gradient(90deg,#fff,#fff);padding:8px 12px;border-radius:10px;border:1px solid rgba(16,24,40,0.03)">Figma • Photoshop</div>
+              <div style="background:linear-gradient(90deg,#fff,#fff);padding:8px 12px;border-radius:10px;border:1px solid rgba(16,24,40,0.03)">Responsive-first</div>
+            </div>
+          </div>
+        </div>
 
+        <aside class="hero-card" aria-label="profile card">
+          <h3>Shaheer Designx</h3>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px">UI / UX Designer • Visual Systems</div>
+          <div class="hero-avatar" style="margin-top:14px">Your image / mockup here</div>
+          <div style="display:flex;gap:10px;margin-top:14px;justify-content:space-between;align-items:center">
+            <div style="font-size:13px;color:var(--muted)"><strong style="color:var(--text)">Available</strong> for freelance</div>
+            <a class="btn primary" href="#contact">Hire Me</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="site-section">
+      <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap">
+        <div style="flex:1;min-width:260px">
+          <h3 class="section-title">About</h3>
+          <p class="muted">I learned design by building — real projects, tight deadlines, and constant iteration. My work focuses on clarity, usability, and rhythm. I build interfaces people can use without thinking and remember because they feel right.</p>
+          <p style="margin-top:12px" class="muted"><strong>Approach:</strong> simple information architecture, readable typography, pragmatic interactions, and pixel-level discipline.</p>
+        </div>
+        <div style="width:320px;min-width:240px">
+          <div class="card">
+            <div style="font-size:13px;color:var(--muted)">Contact</div>
+            <div style="margin-top:8px"><strong>shaheerdesignx@gmail.com</strong></div>
+            <div style="font-size:13px;margin-top:12px;color:var(--muted)">Phone / WhatsApp (add number)</div>
+            <div style="margin-top:12px"><a class="btn ghost" href="#contact">Message</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="site-section">
+      <h3 class="section-title">Skills & Tools</h3>
+      <div class="skills-list" style="margin-top:12px">
+        <div class="pill">UI / UX Design</div>
+        <div class="pill">Design Systems</div>
+        <div class="pill">Figma</div>
+        <div class="pill">Photoshop</div>
+        <div class="pill">Illustrator</div>
+        <div class="pill">Prototyping</div>
+        <div class="pill">Responsive Design</div>
+        <div class="pill">WordPress (basic)</div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="site-section">
+      <h3 class="section-title">Services</h3>
+      <div class="grid-3" style="margin-top:16px">
+        <div class="card">
+          <h4 style="margin:0 0 8px">Product UI</h4>
+          <div class="muted">User-centered interfaces for web & mobile. Wireframes → High-fidelity UI → Handoff.</div>
+        </div>
+        <div class="card">
+          <h4 style="margin:0 0 8px">Brand & Visuals</h4>
+          <div class="muted">Logo treatments, visual systems, and UI kits that feel consistent and polished.</div>
+        </div>
+        <div class="card">
+          <h4 style="margin:0 0 8px">Landing Pages</h4>
+          <div class="muted">Conversion-focused landing pages and marketing UI that convert visitors into users.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="site-section">
+      <h3 class="section-title">Selected Works</h3>
+      <div class="portfolio-grid" style="margin-top:16px">
+        <div class="card">
+          <div class="shot" style="background-image:url('https://source.unsplash.com/800x600/?landing-page,web');"></div>
+          <div class="shot-meta">
+            <strong>Modern Landing Page</strong>
+            <div class="muted" style="margin-top:6px">Design system, responsive layout, conversion flows.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="shot" style="background-image:url('https://source.unsplash.com/800x600/?app,ui');"></div>
+          <div class="shot-meta">
+            <strong>Mobile App Dashboard</strong>
+            <div class="muted" style="margin-top:6px">Clean information hierarchy, micro-interactions.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="shot" style="background-image:url('https://source.unsplash.com/800x600/?real-estate,ui');"></div>
+          <div class="shot-meta">
+            <strong>Property Listing UI</strong>
+            <div class="muted" style="margin-top:6px">Filters, maps, and clear CTAs.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="shot" style="background-image:url('https://source.unsplash.com/800x600/?branding,design');"></div>
+          <div class="shot-meta">
+            <strong>Branding & Posters</strong>
+            <div class="muted" style="margin-top:6px">Visual concepts, marketing materials.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="site-section">
+      <h3 class="section-title">Contact</h3>
+      <div class="contact-row" style="margin-top:12px">
+        <div class="contact-left">
+          <p class="muted">Want to start a project or just say hi? Drop a message — I respond fast and work like a pro.</p>
+
+          <!-- simple form (static mailto fallback) -->
+          <form id="contactForm" style="margin-top:16px;display:grid;gap:12px;max-width:640px">
+            <input name="name" required placeholder="Your name" style="padding:12px;border-radius:8px;border:1px solid rgba(16,24,40,0.06)">
+            <input name="email" required placeholder="Email" style="padding:12px;border-radius:8px;border:1px solid rgba(16,24,40,0.06)">
+            <textarea name="message" required placeholder="Message" rows="4" style="padding:12px;border-radius:8px;border:1px solid rgba(16,24,40,0.06)"></textarea>
+            <div style="display:flex;gap:10px">
+              <button type="submit" class="btn primary">Send message</button>
+              <a href="mailto:shaheerdesignx@gmail.com" class="btn ghost">Email directly</a>
+            </div>
+            <div id="formNote" style="font-size:13px;color:var(--muted);margin-top:6px"></div>
+          </form>
+        </div>
+
+        <div class="contact-right">
+          <div class="card">
+            <div style="font-size:13px;color:var(--muted)">Availability</div>
+            <div style="margin-top:8px"><strong>Freelance — available</strong></div>
+            <div style="margin-top:12px" class="muted">Typical turnaround: concept in 2–4 days depending on complexity.</div>
+
+            <div style="margin-top:14px">
+              <div style="font-size:13px;color:var(--muted)">Quick links</div>
+              <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+                <a href="#portfolio" class="pill">Work</a>
+                <a href="#contact" class="pill">Contact</a>
+                <a href="https://github.com/sheikhshaheer412-web" target="_blank" class="pill">GitHub</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <strong>Shaheer Designx</strong> — Built with discipline & precision.
+    </footer>
+  </main>
+
+  <!-- -------------------------
+       JS: particles + form behavior
+       -------------------------->
+  <script>
+    // Lightweight particle background
+    (function() {
+      const canvas = document.getElementById('particleCanvas');
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = innerWidth;
+      let h = canvas.height = innerHeight;
+      const particles = [];
+      const count = Math.floor((w*h) / 90000); // scale number by screen
+
+      function rand(min,max){ return Math.random()*(max-min)+min }
+
+      function init(){
+        particles.length = 0;
+        for(let i=0;i<count;i++){
+          particles.push({
+            x: rand(0,w),
+            y: rand(0,h),
+            r: rand(0.6,1.8),
+            vx: rand(-0.12,0.12),
+            vy: rand(-0.08,0.08),
+            alpha: rand(0.12,0.36)
+          });
+        }
+      }
+
+      function resize(){ w = canvas.width = innerWidth; h = canvas.height = innerHeight; init(); }
+      addEventListener('resize', resize);
+
+      function draw(){
+        ctx.clearRect(0,0,w,h);
+        for(const p of particles){
+          p.x += p.vx; p.y += p.vy;
+          if(p.x < -50) p.x = w + 50;
+          if(p.x > w + 50) p.x = -50;
+          if(p.y < -50) p.y = h + 50;
+          if(p.y > h + 50) p.y = -50;
+
+          const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r*18);
+          g.addColorStop(0, 'rgba(124,58,237,'+ (p.alpha*0.9) +')');
+          g.addColorStop(1, 'rgba(6,182,212,0)');
+
+          ctx.beginPath();
+          ctx.fillStyle = g;
+          ctx.arc(p.x, p.y, p.r*12, 0, Math.PI*2);
+          ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+
+      init(); draw();
+    })();
+
+    // simple form behavior: open mailto and show note (no backend)
+    (function(){
+      const form = document.getElementById('contactForm');
+      const note = document.getElementById('formNote');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const formData = new FormData(form);
+        const name = formData.get('name') || 'No name';
+        const email = formData.get('email') || 'no-email';
+        const message = formData.get('message') || '';
+        const subject = encodeURIComponent('Project inquiry from ' + name);
+        const body = encodeURIComponent('Name: ' + name + '\\nEmail: ' + email + '\\n\\n' + message);
+        // Use mailto to let user send from their mail client (no server)
+        const mailto = 'mailto:shaheerdesignx@gmail.com?subject=' + subject + '&body=' + body;
+        window.location.href = mailto;
+        note.textContent = 'Opening your mail client...';
+        setTimeout(()=>{ note.textContent = 'If mail client did not open, email: shaheerdesignx@gmail.com' }, 2500);
+      });
+    })();
+  </script>
 </body>
 </html>
