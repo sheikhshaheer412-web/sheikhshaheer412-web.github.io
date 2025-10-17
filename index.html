@@ -1,477 +1,202 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaheer Designx - High-End Design Studio</title>
-    <!-- Load Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Inter font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <style>
-        /* Custom Styles for a Sophisticated Dark Theme with Gold Accent */
-        :root {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            /* Warm Charcoal Background */
-            @apply bg-[#1A1A1A] text-gray-200;
-        }
+@custom-variant dark (&:is(.dark *));
 
-        /* Define the sophisticated accent color (Soft Gold/Tan) */
-        .designx-accent {
-            color: #FFB86C;
-        }
-        .designx-accent-bg {
-            background-color: #FFB86C;
-        }
-        .designx-accent-text {
-            @apply text-gray-900;
-        }
+:root {
+  --font-size: 16px;
+  --background: #ffffff;
+  --foreground: oklch(0.145 0 0);
+  --card: #ffffff;
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #030213;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.0058 264.53);
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: #030213;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
 
-        /* Button Styling - Clean and Solid */
-        .sophisticated-button {
-            transition: all 0.3s ease;
-            @apply designx-accent-bg designx-accent-text font-bold py-3 px-8 rounded-lg shadow-md;
-        }
-        .sophisticated-button:hover {
-            @apply bg-[#e6a55f] shadow-lg shadow-[#FFB86C]/30;
-            transform: translateY(-2px);
-        }
-        
-        /* Service Card Styles - Clean Border Focus */
-        .service-card {
-            transition: border 0.3s ease;
-            @apply bg-[#252525] border border-gray-700 shadow-xl rounded-2xl p-8;
-        }
-        .service-card:hover {
-            border-color: #FFB86C;
-            transform: translateY(-3px);
-        }
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
 
-        /* --- CREATIVE PORTFOLIO INDEX STYLES --- */
-        .project-item {
-            @apply border-b border-gray-700 py-6 md:py-8 cursor-pointer transition-colors duration-300;
-        }
-        .project-item:hover {
-            @apply bg-[#252525];
-        }
-        .project-header {
-            @apply flex justify-between items-center text-gray-300;
-        }
-        .project-title-area {
-            @apply flex items-center space-x-6;
-        }
-        .project-number {
-            @apply text-3xl md:text-5xl font-extrabold designx-accent opacity-70;
-        }
-        .project-meta {
-            @apply text-lg md:text-2xl font-semibold hover:designx-accent;
-        }
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
 
-        /* Hidden details section */
-        .project-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
-            @apply pt-0;
-        }
-        .project-item.is-active .project-details {
-            max-height: 500px; /* Large enough to accommodate content */
-            @apply pt-6;
-        }
-        .project-item.is-active .arrow-icon {
-            transform: rotate(90deg);
-        }
-        .arrow-icon {
-            transition: transform 0.3s ease;
-        }
-    </style>
-</head>
-<body>
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
 
-    <!-- Header & Navigation -->
-    <header class="sticky top-0 z-50 bg-[#1A1A1A]/95 backdrop-blur-sm border-b border-gray-800">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center max-w-6xl">
-            <!-- Logo -->
-            <a href="#home" class="text-2xl font-black text-gray-100">
-                <span class="designx-accent">SHAHEER</span> DESIGNX
-            </a>
+  body {
+    @apply bg-background text-foreground;
+  }
+}
 
-            <!-- Desktop Nav -->
-            <nav class="hidden md:flex space-x-8 font-medium text-gray-400">
-                <a href="#services" class="hover:designx-accent transition-colors">Expertise</a>
-                <a href="#portfolio" class="hover:designx-accent transition-colors">Index</a>
-                <a href="#contact" class="sophisticated-button border-2 border-transparent">
-                    Discuss Project
-                </a>
-            </nav>
+/**
+ * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
+ */
+@layer base {
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
 
-            <!-- Mobile Menu Button -->
-            <button id="menu-button" class="md:hidden p-2 text-gray-400 focus:outline-none">
-                <!-- Lucide Icon: Menu -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-            </button>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-[#252525] border-t border-gray-700">
-            <a href="#services" class="block px-6 py-3 text-gray-300 hover:designx-accent transition-colors">Expertise</a>
-            <a href="#portfolio" class="block px-6 py-3 text-gray-300 hover:designx-accent transition-colors">Index</a>
-            <a href="#contact" class="block designx-accent-bg designx-accent-text mx-4 my-2 p-3 rounded-lg text-center font-bold">Discuss Project</a>
-        </div>
-    </header>
+    h2 {
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
 
-    <!-- Main Content -->
-    <main>
-        <!-- 1. Hero Section -->
-        <section id="home" class="pt-24 pb-20 md:pt-40 md:pb-36 bg-[#1A1A1A]">
-            <div class="container mx-auto px-6 max-w-6xl">
-                <div class="max-w-4xl">
-                    <p class="designx-accent font-semibold mb-3 text-sm uppercase tracking-[0.3em]">
-                        UX STRATEGY & VISUAL ARCHITECTURE
-                    </p>
-                    <h1 class="text-5xl sm:text-7xl md:text-8xl font-extrabold leading-tight text-white mb-6">
-                        Design that drives <span class="designx-accent">Business Value</span>.
-                    </h1>
-                    <p class="text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl">
-                        I'm **Shaheer Designx**, specializing in strategic UI/UX and high-impact graphic design that moves products forward.
-                    </p>
-                    <a href="#portfolio" class="sophisticated-button inline-flex items-center space-x-2 text-lg">
-                        View Case Index
-                        <!-- Lucide Icon: Arrow Right -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                    </a>
-                </div>
-            </div>
-        </section>
+    h3 {
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
 
-        <!-- Separator and Trust Bar (Mock Clients) -->
-        <div class="bg-[#252525] py-8 border-y border-gray-800">
-            <div class="container mx-auto px-6 max-w-6xl">
-                <p class="text-center text-sm font-semibold text-gray-500 uppercase tracking-widest mb-6">
-                    Trusted by Strategic Partners
-                </p>
-                <div class="flex justify-around items-center flex-wrap gap-6">
-                    <span class="text-xl font-bold text-gray-500 hover:designx-accent transition-colors">APEX SYSTEMS</span>
-                    <span class="text-xl font-bold text-gray-500 hover:designx-accent transition-colors">ZYNTH</span>
-                    <span class="text-xl font-bold text-gray-500 hover:designx-accent transition-colors">TECHNOVA</span>
-                    <span class="text-xl font-bold text-gray-500 hover:designx-accent transition-colors">LUXURY FLOW</span>
-                </div>
-            </div>
-        </div>
+    h4 {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
 
-        <!-- 2. Services Section -->
-        <section id="services" class="py-24 md:py-36 bg-[#1A1A1A]">
-            <div class="container mx-auto px-6 max-w-6xl">
-                <div class="max-w-xl mb-16">
-                    <h2 class="text-sm font-semibold designx-accent uppercase tracking-[0.3em] mb-3">
-                        SERVICE SPECTRUM
-                    </h2>
-                    <h3 class="text-4xl md:text-5xl font-extrabold text-white">
-                        My Core Design Expertise
-                    </h3>
-                </div>
+    p {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    label {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
 
-                    <!-- Service Card: UI Design -->
-                    <div class="service-card">
-                        <div class="designx-accent mb-4">
-                            <!-- Lucide Icon: Monitor -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
-                        </div>
-                        <h4 class="text-xl font-bold mb-2 text-white">Advanced UI Design</h4>
-                        <p class="text-gray-400">
-                            Designing clean, contemporary interfaces and robust, scalable design systems for web and mobile products.
-                        </p>
-                    </div>
+    button {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
 
-                    <!-- Service Card: UX Strategy -->
-                    <div class="service-card">
-                        <div class="designx-accent mb-4">
-                            <!-- Lucide Icon: Compass -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"/></svg>
-                        </div>
-                        <h4 class="text-xl font-bold mb-2 text-white">UX Strategy & Flow</h4>
-                        <p class="text-gray-400">
-                            Research, user testing, wireframing, and journey mapping to optimize user satisfaction and key business metrics.
-                        </p>
-                    </div>
+    input {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+  }
+}
 
-                    <!-- Service Card: Branding -->
-                    <div class="service-card">
-                        <div class="designx-accent mb-4">
-                            <!-- Lucide Icon: Feather -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a4 4 0 0 0-5.66-5.66L4 18l1.41 1.41L18.83 8.35a4 4 0 0 0 1.41-1.41z"/><path d="M16 8l-6 6"/><path d="M12.41 19.59 7 14.17"/></svg>
-                        </div>
-                        <h4 class="text-xl font-bold mb-2 text-white">Brand & Visual Identity</h4>
-                        <p class="text-gray-400">
-                            Crafting compelling logos, typography, color palettes, and graphic standards for cohesive brand presence.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+html {
+  font-size: var(--font-size);
+}
 
-        <!-- 3. Portfolio Section (Interactive Index) -->
-        <section id="portfolio" class="py-24 md:py-36 bg-[#252525] border-t border-gray-700">
-            <div class="container mx-auto px-6 max-w-6xl">
-                <div class="max-w-xl mb-16">
-                    <h2 class="text-sm font-semibold designx-accent uppercase tracking-[0.3em] mb-3">
-                        PROJECTS
-                    </h2>
-                    <h3 class="text-4xl md:text-5xl font-extrabold text-white">
-                        Index of Case Studies
-                    </h3>
-                </div>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+}
 
-                <div class="divide-y divide-gray-700">
-                    
-                    <!-- Project 1: Fintech SaaS -->
-                    <div class="project-item" data-project="01">
-                        <div class="project-header">
-                            <div class="project-title-area">
-                                <span class="project-number">01</span>
-                                <span class="project-meta">
-                                    Nova — Enterprise SaaS Dashboard
-                                </span>
-                            </div>
-                            <span class="arrow-icon text-2xl text-gray-500">
-                                <!-- Lucide Icon: Chevron Right -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                            </span>
-                        </div>
-                        <div class="project-details">
-                            <div class="pl-0 md:pl-20">
-                                <p class="text-gray-400 mb-4 max-w-2xl">
-                                    A comprehensive UX overhaul for a financial analytics platform, focused on reducing cognitive load and accelerating decision-making for B2B users.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="text-sm px-3 py-1 rounded-full bg-gray-700 text-gray-300">#UI/UX</span>
-                                    <span class="text-sm px-3 py-1 rounded-full bg-gray-700 text-gray-300">#DataViz</span>
-                                    <span class="text-sm px-3 py-1 rounded-full bg-gray-700 text-gray-300">#DesignSystems</span>
-                                </div>
-                                <a href="#" class="text-sm font-semibold underline designx-accent hover:text-white transition-colors">
-                                    Read Full Case Study →
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2: Luxury Brand Identity -->
-                    <div class="project-item" data-project="02">
-                        <div class="project-header">
-                            <div class="project-title-area">
-                                <span class="project-number">02</span>
-                                <span class="project-meta">
-                                    The Grand Athel — Luxury Identity
-                                </span>
-                            </div>
-                            <span class="arrow-icon text-2xl text-gray-500">
-                                <!-- Lucide Icon: Chevron Right -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                            </span>
-                        </div>
-                        <div class="project-details">
-                            <div class="pl-0 md:pl-20">
-                                <p class="text-gray-400 mb-4 max-w-2xl">
-                                    Full visual branding project for a high-end hospitality group, including logo design, bespoke color palettes, and material design for print collateral.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="text-sm px-3 py-1 rounded-full bg-gray-700 text-gray-300">#Branding</span>
-                                    <span class="text-sm px-3 py-1 rounded-full bg-gray-700 text-gray-300">#GraphicDesign</span>
-                                    <span class="text-sm px-3 py-1 rounded-full bg-gray-700 text-gray-300">#Print</span>
-                                </div>
-                                <a href="#" class="text-sm font-semibold underline designx-accent hover:text-white transition-colors">
-                                    View Brand Book →
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3: Mobile App -->
-                    <div class="project-item" data-project="03">
-                        <div class="project-header">
-                            <div class="project-title-area">
-                                <span class="project-number">03</span>
-                                <span class="project-meta">
-                                    FitTrack — AI-Driven Mobile App
-                                </span>
-                            </div>
-                            <span class="arrow-icon text-2xl text-gray-500">
-                                <!-- Lucide Icon: Chevron Right -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                            </span>
-                        </div>
-                        <div class="project-details">
-                            <div class="pl-0 md:pl-20">
-                                <p class="text-gray-400 mb-4 max-w-2xl">
-                                    Design and prototyping of an intelligent fitness application, with a focus on intuitive navigation and motivational gamification loops.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="text-sm px-3 py-1 rounded-full bg-gray-700 text-gray-300">#MobileUI</span>
-                                    <span class="text-sm px-3 py-1 rounded-full bg-gray-700 text-gray-300">#Gamification</span>
-                                    <span class="text-sm px-3 py-1 rounded-full bg-gray-700 text-gray-300">#Prototyping</span>
-                                </div>
-                                <a href="#" class="text-sm font-semibold underline designx-accent hover:text-white transition-colors">
-                                    See Prototype Video →
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    <!-- Project 4: Marketing Design -->
-                    <div class="project-item" data-project="04">
-                        <div class="project-header">
-                            <div class="project-title-area">
-                                <span class="project-number">04</span>
-                                <span class="project-meta">
-                                    Q4 Campaign — Digital Marketing Assets
-                                </span>
-                            </div>
-                            <span class="arrow-icon text-2xl text-gray-500">
-                                <!-- Lucide Icon: Chevron Right -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                            </span>
-                        </div>
-                        <div class="project-details">
-                            <div class="pl-0 md:pl-20">
-                                <p class="text-gray-400 mb-4 max-w-2xl">
-                                    Creative direction and execution of visual assets for a quarter-long marketing blitz, focusing on conversion-optimized landing pages and ad graphics.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="text-sm px-3 py-1 rounded-full bg-gray-700 text-gray-300">#GraphicDesign</span>
-                                    <span class="text-sm px-3 py-1 rounded-full bg-gray-700 text-gray-300">#Conversion</span>
-                                    <span class="text-sm px-3 py-1 rounded-full bg-gray-700 text-gray-300">#Infographics</span>
-                                </div>
-                                <a href="#" class="text-sm font-semibold underline designx-accent hover:text-white transition-colors">
-                                    View Ad Examples →
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-        <!-- 4. Contact/CTA Section -->
-        <section id="contact" class="py-24 md:py-36 bg-[#1A1A1A] border-t border-gray-800">
-            <div class="container mx-auto px-6 max-w-6xl">
-                <div class="bg-[#252525] p-8 md:p-12 rounded-2xl shadow-2xl shadow-black/30 flex flex-col justify-center items-center gap-8">
-                    
-                    <div class="text-center max-w-2xl">
-                        <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4">
-                            Let's Transform Your Product.
-                        </h2>
-                        <p class="text-xl text-gray-400">
-                            Ready to discuss strategic design? Contact Shaheer Designx today to begin the conversation.
-                        </p>
-                    </div>
-
-                    <div class="w-full lg:w-1/2">
-                        <!-- Simple Contact Form Mock-up -->
-                        <form action="#" method="POST" class="space-y-4">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <input type="text" placeholder="Your Name" required class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:ring-2 focus:ring-[#FFB86C] focus:border-[#FFB86C]">
-                                <input type="email" placeholder="Your Email" required class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:ring-2 focus:ring-[#FFB86C] focus:border-[#FFB86C]">
-                            </div>
-                            <textarea rows="4" placeholder="Tell me about your design challenge..." required class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:ring-2 focus:ring-[#FFB86C] focus:border-[#FFB86C]"></textarea>
-                            
-                            <button type="submit" id="submit-contact" class="w-full sophisticated-button text-lg">
-                                Send Inquiry
-                            </button>
-                            <!-- Message Box -->
-                            <div id="status-message-contact" class="hidden text-center p-3 rounded-lg mt-4 text-sm"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-[#1A1A1A] py-12 border-t border-gray-800">
-        <div class="container mx-auto px-6 max-w-6xl text-center md:text-left md:flex justify-between items-center">
-            
-            <div>
-                <p class="text-xl font-black mb-2 text-gray-100">
-                    <span class="designx-accent">SHAHEER</span> DESIGNX
-                </p>
-                <p class="text-sm text-gray-500">&copy; 2025 Creative Design. All rights reserved.</p>
-            </div>
-            
-            <!-- Social/Link Mockup -->
-            <div class="flex justify-center md:justify-end space-x-6 mt-6 md:mt-0">
-                <a href="#" class="text-gray-500 hover:designx-accent transition-colors text-sm font-semibold">Behance</a>
-                <a href="#" class="text-gray-500 hover:designx-accent transition-colors text-sm font-semibold">LinkedIn</a>
-                <a href="#" class="text-gray-500 hover:designx-accent transition-colors text-sm font-semibold">Dribbble</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript for Mobile Menu and Interactive Portfolio -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuButton = document.getElementById('menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const contactForm = document.querySelector('#contact form');
-            const statusMessage = document.getElementById('status-message-contact');
-            const projectItems = document.querySelectorAll('.project-item');
-
-            // 1. Mobile Menu Toggle
-            menuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            // Hide menu when a link is clicked
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-
-            // 2. Portfolio Interaction (Accordion Effect)
-            projectItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const isActive = item.classList.contains('is-active');
-                    
-                    // Close all other open items
-                    projectItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('is-active');
-                        }
-                    });
-
-                    // Toggle the clicked item
-                    item.classList.toggle('is-active', !isActive);
-                });
-            });
-
-            // 3. Form Submission Handler
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-
-                // Simple client-side mock feedback
-                statusMessage.textContent = 'Inquiry sent successfully! Your details have been received.';
-                statusMessage.classList.remove('hidden');
-                statusMessage.classList.add('bg-gray-700', 'text-[#FFB86C]');
-
-                // Clear the form fields after a successful submission mock
-                contactForm.reset();
-
-                // Clear status message after 6 seconds
-                setTimeout(() => {
-                    statusMessage.classList.add('hidden');
-                }, 6000);
-            });
-        });
-    </script>
-
-</body>
-</html>
-
+/* Override the imported component's size-full to allow content to expand */
+[data-name="Desktop - 1"] {
+  min-height: 100vh !important;
+  height: auto !important;
+}
